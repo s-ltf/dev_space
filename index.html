@@ -36,7 +36,7 @@
 		
 			// get reference to form to attach button onclick handlers
 			var form = document.getElementById('form');
-			var response = document.getElementById('responseForm');
+			var responseForm = document.getElementById('responseForm');
 			// get reference to iframe window
 			var ifrm = document.getElementById('iframe').contentWindow;
 			var val;
@@ -62,7 +62,7 @@
 				var task = e.data['task']; // task received in 
 				var val =  e.data['val'];
 				
-				response.elements.response.value = val;
+				responseForm.elements.response.value = val;
 				}
 				
 		
