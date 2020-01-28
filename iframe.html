@@ -17,11 +17,33 @@
   <script>
 	var incomingMsg = document.getElementById('incomingMsg');
 
-    window.addEventListener('message', function(event) {
-	
-      //alert(`Received ${event.data} from ${event.origin}`);
-	  incomingMsg.elements.display.value = event.data;
-    });
+	// check for browser support
+	if ( window.addEventListener ) {
+		// message handler
+		window.addEventListener('message', function(e) {
+			// check message origin
+			if ( e.origin === 'https://s-ltf.github.io' ) {
+				var task = e.data['task']; // task received in postMessage
+				var msg; // for postMessage reply to e.source 
+				
+				switch ( task ) { // postMessage tasks
+					
+					// send value of entry in text box (validate first)
+					case 'val' :
+						//var re = /[^-a-zA-Z!,'?\s]/g; // to filter out unwanted characters
+						//var fld = document.forms['iframeDemoForm'].elements['greeting'];
+						//var val = fld.value.replace(re, '');
+						var val = e.data['val'];
+						incomingMsg.elements.display.value = val;
+						var msg = {'task': 'val', 'val': val};
+						e.source.postMessage(msg , e.origin );
+						break;
+									
+					//default:
+				}
+			}
+		}, false);
+	}
   </script>
 
 </body>
