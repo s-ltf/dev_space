@@ -22,6 +22,9 @@
 	
 	Response Data
     <input type="text" name="response" readonly>
+	<br>
+	Incoming Message
+	<input type="text" name="incomingMsg" readonly>
   </form>
   
 
@@ -62,7 +65,23 @@
 				var task = e.data['task']; // task received in 
 				var val =  e.data['val'];
 				
-				responseForm.elements.response.value = val;
+				switch ( task ) { // // postMessage tasks
+                // display counter received in postMessage
+                case 'response' :
+					responseForm.elements.response.value = val;
+                    break;
+                
+                // display text box value received in postMessage
+                case 'val' :
+					responseForm.elements.incomingMsg.value = val;
+                    break;
+                
+                case 'clear' :
+                    // nothing to do for this one
+                    break;
+                //default:
+                    
+            }
 				}
 				
 		
