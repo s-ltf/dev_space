@@ -34,13 +34,13 @@
 					
 			// to increment and display counter variable in iframed document
 			form.elements['btn_valA'].onclick = function() {
-				val = form.elements.valB.value;
+				val = form.elements.valA.value;
 				ifrm.postMessage( {'task': 'val','val':val}, target_origin );
 			}
 			
 			// to get value of form element in iframed document
 			form.elements.btn_valB.onclick = function() {
-				val = form.elements.valA.value;
+				val = form.elements.valB.value;
 				ifrm.postMessage( {'task': 'val','val':val}, target_origin );
 			}
 			
