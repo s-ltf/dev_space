@@ -9,20 +9,44 @@
 
   <form id="form">
     <input type="text" placeholder="Enter Value A" name="valA">
-    <input type="submit" value="Click to send">
+	<input name="btn_valA" type="button" value="Click to send" />
 	<br>
 	<input type="text" placeholder="Enter Value B" name="valB">
-    <input type="submit" value="Click to send">
+	<input name="btn_valB" type="button" value="Click to send" />
   </form>
   <br>
   <iframe src="iframe.html" id="iframe" style="display:block;height:150px" sandbox="allow-same-origin allow-scripts allow-modals"></iframe>
 
   <script>
-	let ifr = document.getElementById('iframe').contentWindow;
-    form.onsubmit = function() {
-      ifr.postMessage(this.valA.value, '*');
-	  //ifr.postMessage(this.valB.value, '*');
-      return false;
+	// check for browser support
+	if ( window.addEventListener ) {
+    
+		// when DOM is ready assign button onclick handlers
+		window.addEventListener('DOMContentLoaded', function() {
+			// where to send messages with postMessage
+			var target_origin = 'https://s-ltf.github.io';
+		
+			// get reference to form to attach button onclick handlers
+			var form = document.getElementById('form');
+			// get reference to iframe window
+			var ifrm = document.getElementById('iframe').contentWindow;
+			var val;
+					
+			// to increment and display counter variable in iframed document
+			form.elements['btn_valA'].onclick = function() {
+				val = form.elements.valB.value;
+				ifrm.postMessage( {'task': 'val','val':val}, target_origin );
+			}
+			
+			// to get value of form element in iframed document
+			form.elements.btn_valB.onclick = function() {
+				val = form.elements.valA.value;
+				ifrm.postMessage( {'task': 'val','val':val}, target_origin );
+			}
+			
+			
+		}, false);
+
     };
   </script>
 
