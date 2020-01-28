@@ -53,6 +53,7 @@
 			
 			
 		}, false);
+		
 		window.addEventListener('message', function (e){
 			// check message origin
 			if ( e.origin === 'https://s-ltf.github.io' ) {
@@ -60,6 +61,7 @@
 				var val =  e.data['val'];
 				
 				response.elements.response.value = 'the task coming back is '+task 'and the value is ' + val ;
+				}
 				
 		
 		},false);
