@@ -14,15 +14,27 @@
   <input type="text" name="display" size="30" value="placeholder" readonly="readonly">
   </form>
   </p>
+  <br>
+  <form id="outgoingMsg">
+    <input type="text" placeholder="Enter Value A" name="toParent_valA">
+	<input name="btn_toParent_valA" type="button" value="Click to send" />
+	<br>
+	<input type="text" placeholder="Enter Value B" name="toParent_valB">
+	<input name="btn_toParent_valB" type="button" value="Click to send" />
+  </form>
+  
+  
   <script>
 	var incomingMsg = document.getElementById('incomingMsg');
-
+	var outgoingMsg = document.getElementById('outgoingMsg');
+	var val;
+	let sourceOrigin = 'https://s-ltf.github.io';
 	// check for browser support
 	if ( window.addEventListener ) {
 		// message handler
 		window.addEventListener('message', function(e) {
 			// check message origin
-			if ( e.origin === 'https://s-ltf.github.io' ) {
+			if ( e.origin === sourceOrigin ) {
 				var task = e.data['task']; // task received in postMessage
 				var msg; // for postMessage reply to e.source 
 				
@@ -43,7 +55,23 @@
 				}
 			}
 		}, false);
+		
+		window.addEventListener('load', function() {
+			
+			outgoingMsg.elements.btn_toParent_valA.onclick = function() {
+				val = outgoingMsg.elements.toParent_valA.value;
+				parent.postMessage( {'task': 'val', 'val':val}, target_origin );
+			}
+
+			outgoingMsg.elements.btn_toParent_valB.onclick = function() {
+				val = outgoingMsg.elements.toParent_valB.value;
+				parent.postMessage( {'task': 'val', 'val':val}, target_origin );
+			}							
+				
+		},false);
 	}
+	
+
   </script>
 
 </body>
