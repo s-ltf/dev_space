@@ -10,6 +10,7 @@
   Receiving iframe.
   
   <p id="incomingMsg">
+  <input type="text" name="display" size="30" value="placeholder" readonly="readonly">
   </p>
   <script>
 	let incomingMsg = document.getElementById('incomingMsg');
@@ -17,7 +18,7 @@
     window.addEventListener('message', function(event) {
 	
       alert(`Received ${event.data} from ${event.origin}`);
-	  incomingMsg.value = event.data;
+	  incomingMsg.display.value = event.data;
     });
   </script>
 
