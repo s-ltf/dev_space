@@ -15,7 +15,13 @@
 	<input name="btn_valB" type="button" value="Click to send" />
   </form>
   <br>
-  <iframe src="iframe.html" id="iframe" style="display:block;height:150px" sandbox="allow-same-origin allow-scripts allow-modals"></iframe>
+  <iframe src="iframe.html" id="iframe" style="display:block;height:150px" sandbox="allow-same-origin allow-scripts allow-modals">
+  </iframe>
+  
+  <form id="responseForm">
+    <input type="text" name="response" readonly>
+  </form>
+  
 
   <script>
 	// check for browser support
@@ -28,6 +34,7 @@
 		
 			// get reference to form to attach button onclick handlers
 			var form = document.getElementById('form');
+			var response = document.getElementById('responseForm');
 			// get reference to iframe window
 			var ifrm = document.getElementById('iframe').contentWindow;
 			var val;
@@ -46,6 +53,17 @@
 			
 			
 		}, false);
+		window.addEventListener('message', function (e){
+			// check message origin
+			if ( e.origin === 'https://s-ltf.github.io' ) {
+				var task = e.data['task']; // task received in 
+				var val =  e.data['val'];
+				
+				response.elements.response.value = 'the task coming back is '+task 'and the value is ' + val ;
+				
+		
+		},false);
+		
 
     };
   </script>
