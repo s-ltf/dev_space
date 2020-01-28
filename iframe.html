@@ -48,7 +48,7 @@
 						var val = e.data['val'];
 						incomingMsg.elements.display.value = val;
 						var msg = {'task': 'response', 'val': Date()};
-						e.source.postMessage(msg , e.origin );
+						e.source.postMessage(msg , sourceOrigin );
 						break;
 									
 					//default:
