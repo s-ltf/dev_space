@@ -60,12 +60,12 @@
 			
 			outgoingMsg.elements.btn_toParent_valA.onclick = function() {
 				val = outgoingMsg.elements.toParent_valA.value;
-				parent.postMessage( {'task': 'val', 'val':val}, target_origin );
+				parent.postMessage( {'task': 'val', 'val':val}, sourceOrigin );
 			}
 
 			outgoingMsg.elements.btn_toParent_valB.onclick = function() {
 				val = outgoingMsg.elements.toParent_valB.value;
-				parent.postMessage( {'task': 'val', 'val':val}, target_origin );
+				parent.postMessage( {'task': 'val', 'val':val}, sourceOrigin );
 			}							
 				
 		},false);
