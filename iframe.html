@@ -8,9 +8,16 @@
 <body>
 
   Receiving iframe.
+  
+  <p id="incomingMsg">
+  </p>
   <script>
+	let incomingMsg = document.getElementById('incomingMsg');
+
     window.addEventListener('message', function(event) {
+	
       alert(`Received ${event.data} from ${event.origin}`);
+	  incomingMsg.value = event.data;
     });
   </script>
 
