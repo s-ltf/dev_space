@@ -15,12 +15,12 @@
   </form>
   </p>
   <script>
-	let incomingMsg = document.getElementById('incomingMsg');
+	var incomingMsg = document.getElementById('incomingMsg');
 
     window.addEventListener('message', function(event) {
 	
       alert(`Received ${event.data} from ${event.origin}`);
-	  incomingMsg.display.value = event.data;
+	  incomingMsg.elements.display.value = event.data;
     });
   </script>
 
