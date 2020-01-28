@@ -35,7 +35,7 @@
 						//var val = fld.value.replace(re, '');
 						var val = e.data['val'];
 						incomingMsg.elements.display.value = val;
-						var msg = {'task': 'response', 'val': 'placeholder'};
+						var msg = {'task': 'response', 'val': Date()};
 						e.source.postMessage(msg , e.origin );
 						break;
 									
