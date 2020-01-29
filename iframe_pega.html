@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+<script>    
+	function sendMessageToParent(){      
+		var nameEle = document.getElementById("Name"); 
+		var nameValue = nameEle.value;
+		var parentWin = window.parent;
+		parentWin.postMessage(nameValue, "*");
+	}
+		
+	function recieveMessageFromParent(event){
+		document.getElementById("Name").value = event.data;
+	}
+
+	window.addEventListener("message", recieveMessageFromParent, false);
+
+</script>
+
+</head>
+<body>
+	<form action="">Name:
+		<br>
+		<input type="text" id= "Name" name="firstname" value="Pega">
+		<br>Last name:<br>
+		<input type="text" name="lastname" value="Systems">
+		<br>
+		<br>
+		<button type="button" onclick="sendMessageToParent();">Post Message To Parent</button>
+		<br>
+		<br>
+
+		<input type="submit" value="Submit">
+		<input type="reset">
+	</form>
+</body>
+</html>
