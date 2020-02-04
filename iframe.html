@@ -6,21 +6,19 @@
 </head>
 
 <body>
-
-  Receiving iframe.
   
   <p>
   <form id="incomingMsg">
-  <input type="text" name="display" size="30" value="placeholder" readonly="readonly">
+  <input type="text" name="display" size="30" value="Incoming Msg" readonly="readonly">
   </form>
   </p>
   <br>
   <form id="outgoingMsg">
     <input type="text" placeholder="Enter Value A" name="toParent_valA">
-	<input name="btn_toParent_valA" type="button" value="Click to send" />
+	<input name="btn_toParent_valA" type="button" value="Click to send (Parent)" />
 	<br>
 	<input type="text" placeholder="Enter Value B" name="toParent_valB">
-	<input name="btn_toParent_valB" type="button" value="Click to send" />
+	<input name="btn_toParent_valB" type="button" value="Click to send (Second Iframe)" />
   </form>
   
   
@@ -34,7 +32,7 @@
 		// message handler
 		window.addEventListener('message', function(e) {
 			// check message origin
-			if ( true ) {
+			if ( e.data['task'] ) {
 				var task = e.data['task']; // task received in postMessage
 				var msg; // for postMessage reply to e.source 
 				
@@ -45,14 +43,21 @@
 						//var re = /[^-a-zA-Z!,'?\s]/g; // to filter out unwanted characters
 						//var fld = document.forms['iframeDemoForm'].elements['greeting'];
 						//var val = fld.value.replace(re, '');
-						var val = e.data['val'];
+						val = e.data['val'];
 						incomingMsg.elements.display.value = val;
-						var msg = {'task': 'response', 'val': Date()};
+						msg = {'task': 'response', 'val': Date()};
 						e.source.postMessage(msg , sourceOrigin );
 						break;
 									
 					//default:
 				}
+			}
+			else{
+						val = e.data;
+						incomingMsg.elements.display.value = val;
+						msg = Date();
+						e.source.postMessage(msg , sourceOrigin );
+				
 			}
 		}, false);
 		
@@ -65,7 +70,7 @@
 
 			outgoingMsg.elements.btn_toParent_valB.onclick = function() {
 				val = outgoingMsg.elements.toParent_valB.value;
-				parent.postMessage( {'task': 'val', 'val':val}, sourceOrigin );
+				parent.postMessage( {'task': 'toIframe', 'val':val}, sourceOrigin );
 			}							
 				
 		},false);
