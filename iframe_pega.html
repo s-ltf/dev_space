@@ -4,14 +4,33 @@
 <head>
 <script>    
 	function sendMessageToParent(){      
-		var nameEle = document.getElementById("Name"); 
+		var nameEle = document.getElementById("value_A"); 
 		var nameValue = nameEle.value;
 		var parentWin = window.parent;
 		parentWin.postMessage(nameValue, "*");
 	}
 		
-	function recieveMessageFromParent(event){
-		document.getElementById("Name").value = event.data;
+	function recieveMessageFromParent(e){
+	
+		if ( e.data['task'] ) {
+				var task = e.data['task']; // task received in postMessage
+				
+				switch ( task ) { // postMessage tasks
+					
+					// send value of entry in text box (validate first)
+					case 'val' :
+						//var re = /[^-a-zA-Z!,'?\s]/g; // to filter out unwanted characters
+						//var fld = document.forms['iframeDemoForm'].elements['greeting'];
+						//var val = fld.value.replace(re, '');
+						val = e.data['val'];
+						break;							
+					//default:
+				}
+			}
+			else{
+						val = e.data;				
+			}
+			document.getElementById("value_B").value = val;
 	}
 
 	window.addEventListener("message", recieveMessageFromParent, false);
@@ -20,18 +39,21 @@
 
 </head>
 <body>
-	<form action="">Name:
+	<form action="">
+		Value A:
 		<br>
-		<input type="text" id= "Name" name="firstname" value="Pega">
-		<br>Last name:<br>
-		<input type="text" name="lastname" value="Systems">
+		<input type="text" id= "value_A" name="valueA" value="iFrame2 value">
+		<br>
+		Last name:
+		<br>
+		<input type="text" id= "value_B" name="value_B" value="recieving form iFrame 1">
 		<br>
 		<br>
 		<button type="button" onclick="sendMessageToParent();">Post Message To Parent</button>
 		<br>
 		<br>
 
-		<input type="submit" value="Submit">
+		<!--<input type="submit" value="Submit">-->
 		<input type="reset">
 	</form>
 </body>
