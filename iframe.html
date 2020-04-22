@@ -55,6 +55,7 @@
 	function getCookie() {
 		cname = cookieData.elements.CookieName.value;
 		var name = cname + "=";
+		alert("Gettomg cookie with name " +name );
 		var decodedCookie = decodeURIComponent(document.cookie);
 		var ca = decodedCookie.split(';');
 		for(var i = 0; i < ca.length; i++) {
