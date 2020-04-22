@@ -48,6 +48,7 @@
 		var expires = "expires=" + d.toGMTString();
 		cname = cookieData.elements.CookieName.value;
 		cvalue = cookieData.elements.CookieValue.value;
+		alert("Seting cookie with name " +cname + " and value "+ cvalue);
 		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 	}
 
