@@ -21,6 +21,15 @@
 	<input name="btn_toParent_valB" type="button" value="Send To Iframe 2" />
   </form>
   
+  <form id="CookieTest">
+	<title>Cookie Test</title>
+    <input type="text" placeholder="Enter Cookie Name" name="CookieName">
+	<input type="text" placeholder="Enter Cookie Content" name="CookieContent">
+	<input name="btn_SetCookie" type="button" value="Set Cookie" />
+	<br>
+	<input name="btn_getCookie" type="button" value="Get Cookie" />
+  </form>
+  
   
   <script>
 	var incomingMsg = document.getElementById('incomingMsg');
@@ -75,6 +84,8 @@
 				
 		},false);
 	}
+	
+	
 	
 
   </script>
