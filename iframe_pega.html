@@ -34,6 +34,42 @@
 	}
 
 	window.addEventListener("message", recieveMessageFromParent, false);
+	
+	function setCookie() {
+		var exdays = 1;
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires=" + d.toGMTString();
+		cname = cookieData.elements.CookieName.value;
+		cvalue = cookieData.elements.CookieValue.value;
+		//alert("Seting cookie with name " +cname + " and value "+ cvalue);
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie() {
+		cname = cookieData.elements.CookieName.value;
+		var name = cname + "=";
+		//alert("Gettomg cookie with name " +name );
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					cvalue = c.substring(name.length, c.length);
+				}
+		}
+		
+		if (cvalue == ""){
+			cookieData.elements.CookieValue.value = "Not Found";
+		}else{
+			cookieData.elements.CookieValue.value = cvalue;
+		}
+		
+
+	}
 
 </script>
 
@@ -54,5 +90,14 @@
 		<!--<input type="submit" value="Submit">-->
 		
 	</form>
+	<br>
+	  <form id="CookieTest">
+	<title>Cookie Test</title>
+    <input type="text" placeholder="Enter Cookie Name" name="CookieName">
+	<input type="text" placeholder="Enter Cookie Content" name="CookieValue">
+	<br>
+	<input name="btn_SetCookie" type="button" value="Set Cookie" onclick="setCookie()" />
+	<input name="btn_getCookie" type="button" value="Get Cookie" onclick="getCookie()" />
+  </form>
 </body>
 </html>
