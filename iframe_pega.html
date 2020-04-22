@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<script>    
+<script>   
+
 	function sendMessageToParent(){      
 		var nameEle = document.getElementById("value_A"); 
 		var nameValue = nameEle.value;
@@ -34,10 +35,11 @@
 	}
 
 	window.addEventListener("message", recieveMessageFromParent, false);
-	var cookieData = document.getElementById('CookieTest');
-	var cname;
-	var cvalue;
+
 	function setCookie() {
+		var cookieData = document.getElementById('CookieTest');
+	var cname;
+	var cvalue; 
 		var exdays = 1;
 		var d = new Date();
 		d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -49,6 +51,9 @@
 	}
 
 	function getCookie() {
+		var cookieData = document.getElementById('CookieTest');
+	var cname;
+	var cvalue; 
 		cname = cookieData.elements.CookieName.value;
 		var name = cname + "=";
 		//alert("Gettomg cookie with name " +name );
@@ -93,7 +98,7 @@
 		
 	</form>
 	<br>
-	  <form id="CookieTest">
+	 <form id="CookieTest">
 	<title>Cookie Test</title>
     <input type="text" placeholder="Enter Cookie Name" name="CookieName">
 	<input type="text" placeholder="Enter Cookie Content" name="CookieValue">
