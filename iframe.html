@@ -26,8 +26,8 @@
     <input type="text" placeholder="Enter Cookie Name" name="CookieName">
 	<input type="text" placeholder="Enter Cookie Content" name="CookieValue">
 	<br>
-	<input name="btn_SetCookie" type="button" value="Set Cookie" />
-	<input name="btn_getCookie" type="button" value="Get Cookie" />
+	<input name="btn_SetCookie" type="button" value="Set Cookie" onclick="setCookie()" />
+	<input name="btn_getCookie" type="button" value="Get Cookie" onclick="getCookie()" />
   </form>
   
   
@@ -135,8 +135,8 @@
 				parent.postMessage( {'task': 'toIframe', 'val':val}, sourceOrigin );
 			}
 
-			cookieData.elements.btn_SetCookie.onclick = setCookie();
-			cookieData.elements.btn_getCookie.onclick = getCookie();
+			//cookieData.elements.btn_SetCookie.onclick = setCookie();
+			//cookieData.elements.btn_getCookie.onclick = getCookie();
 				
 				
 		},false);
