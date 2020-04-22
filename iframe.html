@@ -24,7 +24,7 @@
   <form id="CookieTest">
 	<title>Cookie Test</title>
     <input type="text" placeholder="Enter Cookie Name" name="CookieName">
-	<input type="text" placeholder="Enter Cookie Content" name="CookieContent">
+	<input type="text" placeholder="Enter Cookie Content" name="CookieValue">
 	<br>
 	<input name="btn_SetCookie" type="button" value="Set Cookie" />
 	<input name="btn_getCookie" type="button" value="Get Cookie" />
@@ -34,8 +34,60 @@
   <script>
 	var incomingMsg = document.getElementById('incomingMsg');
 	var outgoingMsg = document.getElementById('outgoingMsg');
+	var cookieData = document.getElementById('CookieTest');
+	var cname;
+	var cvalue;
 	var val;
 	let sourceOrigin = '*';
+	
+	
+	function setCookie() {
+		var exdays = 1;
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires=" + d.toGMTString();
+		cname = cookieData.elements.CookieName.value;
+		cvalue = cookieData.elements.CookieValue.value;
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie() {
+		cname = cookieData.elements.CookieName.value;
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					cvalue = c.substring(name.length, c.length);
+				}
+		}
+		
+		if (cvalue != ""){
+			cookieData.elements.CookieValue.value = "Not Found";
+		}else{
+			cookieData.elements.CookieValue.value = cvalue;
+		}
+		
+
+	}
+
+	<!-- function checkCookie() { -->
+	  <!-- var user=getCookie("username"); -->
+	  <!-- if (user != "") { -->
+		<!-- alert("Welcome again " + user); -->
+	  <!-- } else { -->
+		 <!-- user = prompt("Please enter your name:",""); -->
+		 <!-- if (user != "" && user != null) { -->
+		   <!-- setCookie("username", user, 30); -->
+		 <!-- } -->
+	  <!-- } -->
+	<!-- } -->
+	
+	
 	// check for browser support
 	if ( window.addEventListener ) {
 		// message handler
@@ -80,7 +132,11 @@
 			outgoingMsg.elements.btn_toParent_valB.onclick = function() {
 				val = outgoingMsg.elements.toParent_valB.value;
 				parent.postMessage( {'task': 'toIframe', 'val':val}, sourceOrigin );
-			}							
+			}
+
+			cookieData.elements.btn_SetCookie.onclick = setCookie();
+			cookieData.elements.btn_getCookie.onclick = getCookie();
+				
 				
 		},false);
 	}
