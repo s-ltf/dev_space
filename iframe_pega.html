@@ -34,7 +34,9 @@
 	}
 
 	window.addEventListener("message", recieveMessageFromParent, false);
-	
+	var cookieData = document.getElementById('CookieTest');
+	var cname;
+	var cvalue;
 	function setCookie() {
 		var exdays = 1;
 		var d = new Date();
