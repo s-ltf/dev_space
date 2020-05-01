@@ -113,6 +113,23 @@
 						break;
 									
 					//default:
+					
+					case 'cookie' :
+						//var re = /[^-a-zA-Z!,'?\s]/g; // to filter out unwanted characters
+						//var fld = document.forms['iframeDemoForm'].elements['greeting'];
+						//var val = fld.value.replace(re, '');
+						val = e.data['val'];
+						incomingMsg.elements.display.value = val;
+						var exdays = 1;
+						var d = new Date();
+						d.setTime(d.getTime() + (exdays*24*60*60*1000));
+						var expires = "expires=" + d.toGMTString();
+						cname = "PegaCookie";
+						cvalue = val;
+						//alert("Seting cookie with name " +cname + " and value "+ cvalue);
+						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+						break;
 				}
 			}
 			else{
