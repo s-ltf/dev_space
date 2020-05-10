@@ -151,6 +151,14 @@
 				oSafeURL.put("returnVal", "FROM IFRAME");
 				var strReturn = pega.util.Connect.asyncRequest('GET', oSafeURL.toURL());
 				
+				var options = {
+                name: "DATA-PORTAL.TESTINGMFACTIVITY1",
+                parameters: [{name: "returnVal", value: "FROM IFRAME", isProperty: false}],
+                contextPage: "Primary",
+                event: eventObject
+				};
+
+            pega.api.ui.actions.runActivity(options);
 				
 				
 				
