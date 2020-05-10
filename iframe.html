@@ -146,6 +146,14 @@
 			outgoingMsg.elements.btn_toParent_valA.onclick = function() {
 				val = outgoingMsg.elements.toParent_valA.value;
 				parent.postMessage( {'task': 'val', 'val':val}, sourceOrigin );
+				
+				var oSafeURL = new SafeURL("DATA-PORTAL.TESTINGMFACTIVITY1");
+				oSafeURL.put("returnVal", "FROM IFRAME");
+				var strReturn = pega.util.Connect.asyncRequest('GET', oSafeURL.toURL());
+				
+				
+				
+				
 			}
 
 			outgoingMsg.elements.btn_toParent_valB.onclick = function() {
