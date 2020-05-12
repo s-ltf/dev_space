@@ -29,7 +29,9 @@
 	<input name="btn_SetCookie" type="button" value="Set Cookie" onclick="setCookie()" />
 	<input name="btn_getCookie" type="button" value="Get Cookie" onclick="getCookie()" />
   </form>
-  
+  <br/>
+  <button onclick="myShowModal()">Show dialog</button>
+  <dialog id="myDialog">This is a dialog window</dialog>
   
   <script>
 	var incomingMsg = document.getElementById('incomingMsg');
@@ -77,6 +79,9 @@
 
 	}
 
+	function myShowModal() { 
+	  document.getElementById("myDialog").showModal(); 
+	} 
 	<!-- function checkCookie() { -->
 	  <!-- var user=getCookie("username"); -->
 	  <!-- if (user != "") { -->
